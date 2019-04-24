@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ParkingLogTest {
 
     @Test
-    public void have_one_parking_lot_should_return_one_parking_ticket() {
+    public void have_empty_parking_space_should_return_one_parking_ticket() {
         ParkingLog parkingLog = new ParkingLog(3);
         Car car = new Car("陕A-66666");
         Ticket ticket = new Ticket(1, "陕A-66666");
@@ -15,7 +15,7 @@ public class ParkingLogTest {
     }
 
     @Test
-    public void no_have_parking_lot_should_return_null() {
+    public void no_have_parking_space_should_return_null() {
         ParkingLog parkingLog = initPutOneCar();
         Car car1 = new Car("陕A-33333");
 
