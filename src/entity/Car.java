@@ -1,20 +1,25 @@
 package entity;
 
 public class Car {
-    private String numberPlates;
+    private String plateNumber;
 
     public Car() {
     }
 
-    public Car(String numberPlates) {
-        this.numberPlates = numberPlates;
+    public Car(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
-    public String getNumberPlates() {
-        return numberPlates;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setNumberPlates(String numberPlates) {
-        this.numberPlates = numberPlates;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "车牌号：" + plateNumber;
     }
 }
