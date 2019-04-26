@@ -10,9 +10,10 @@ public class ParkingLogBossTest {
     public void one_parking_no_places_tow_parking_have_empty_parking_space_should_return_one_parking_ticket() {
         ParkingLogBoss parkingLogBoss = initParkingLogBoss();
         Car car = new Car("陕A-66666");
-        Ticket ticket = new Ticket(1, "陕A-66666");
 
-        Assert.assertEquals(parkingLogBoss.carParking(car).toString(), ticket.toString());
+        Assert.assertEquals(parkingLogBoss.carParking(car).toString(), "------车票------\n" +
+                "编号：1\n" +
+                "车牌号：陕A-66666\n");
     }
 
     @Test
@@ -20,8 +21,15 @@ public class ParkingLogBossTest {
         ParkingLogBoss parkingLogBoss = initParkingLogBoss();
         Ticket ticket = new Ticket(1, "陕A-55555");
 
-        Assert.assertEquals(parkingLogBoss.pickUp(ticket).toString(), new Car("陕A-55555").toString());
+        Assert.assertEquals(parkingLogBoss.pickUp(ticket).toString(), "车牌号：陕A-55555");
 
+    }
+
+    @Test
+    public void have_error_ticket_should_return_null() {
+        ParkingLogBoss parkingLogBoss = initParkingLogBoss();
+
+        Assert.assertNull(parkingLogBoss.pickUp(new Ticket(2, "陕A-66666")));
     }
 
     private ParkingLogBoss initParkingLogBoss() {

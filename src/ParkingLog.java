@@ -45,7 +45,6 @@ public class ParkingLog {
                 car.setPlateNumber(ticket.getPlateNumber());
                 return car;
             }
-
         }
 
         return null;
