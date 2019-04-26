@@ -7,9 +7,6 @@ public class Ticket {
         this.plateNumber = plateNumber;
     }
 
-    public Ticket() {
-    }
-
     public String getPlateNumber() {
         return plateNumber;
     }

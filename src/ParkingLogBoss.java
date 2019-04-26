@@ -4,10 +4,6 @@ import java.util.List;
 public class ParkingLogBoss {
     private List<ParkingLog> parkingLogs = new ArrayList<>();
 
-    public List<ParkingLog> getParkingLogs() {
-        return parkingLogs;
-    }
-
     public void setParkingLogs(List<ParkingLog> parkingLogs) {
         this.parkingLogs = parkingLogs;
     }
