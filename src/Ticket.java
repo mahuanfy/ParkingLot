@@ -1,5 +1,3 @@
-package entity;
-
 public class Ticket {
     private int id;
     private String plateNumber;
@@ -7,6 +5,9 @@ public class Ticket {
     public Ticket(int id, String plateNumber) {
         this.id = id;
         this.plateNumber = plateNumber;
+    }
+
+    public Ticket() {
     }
 
     public String getPlateNumber() {

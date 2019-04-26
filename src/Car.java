@@ -1,5 +1,3 @@
-package entity;
-
 public class Car {
     private String plateNumber;
 

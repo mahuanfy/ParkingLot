@@ -1,7 +1,9 @@
-import entity.Car;
-import entity.Ticket;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ParkingLogTest {
 
@@ -33,15 +35,13 @@ public class ParkingLogTest {
     @Test
     public void have_error_ticket_should_return_null() {
         ParkingLog parkingLog = initPutOneCar();
-        Ticket ticket = new Ticket(0, "陕A-88888");
+        Ticket ticket = new Ticket(1, "陕A-88888");
 
         Assert.assertEquals(parkingLog.pickUp(ticket), null);
     }
 
-    private ParkingLog initPutOneCar(){
-        ParkingLog parkingLog = new ParkingLog(1);
-        Car car = new Car("陕A-55555");
-        parkingLog.carParking(car);
-        return parkingLog;
+    private ParkingLog initPutOneCar() {
+        List<String> places = new ArrayList(Arrays.asList("陕A-55555"));
+        return new ParkingLog(1, places);
     }
 }
