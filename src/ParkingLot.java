@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingLog {
+public class ParkingLot {
     private int parkingSize;
-    private List<String> places = new ArrayList<>();
+    private List<String> licenses = new ArrayList<>();
 
-    public ParkingLog(int parkingSize) {
+    public ParkingLot(int parkingSize) {
         this.parkingSize = parkingSize;
     }
 
-    public ParkingLog(int parkingSize, List<String> places) {
+    public ParkingLot(int parkingSize, List<String> licenses) {
         this.parkingSize = parkingSize;
-        this.places = places;
+        this.licenses = licenses;
     }
 
     public int getParkingSize() {
@@ -19,14 +19,14 @@ public class ParkingLog {
     }
 
     public List<String> getPlaces() {
-        return places;
+        return licenses;
     }
 
-    public Ticket carParking(Car car) {
+    public Ticket park(Car car) {
         if (!haveVacantParkingSpaces()) {
             return null;
         }
-        places.add(car.getPlateNumber());
+        licenses.add(car.getPlateNumber());
 
         return new Ticket(this.getPlaces().size(), car.getPlateNumber());
     }
@@ -37,12 +37,12 @@ public class ParkingLog {
 
     public Car pickUp(Ticket ticket) {
         Car car = new Car();
-        int size = places.size();
+        int size = licenses.size();
         for (int i = 0; i < size; i++) {
-            String place = places.get(i);
+            String place = licenses.get(i);
             if (isCorrectTicket(ticket, place)) {
-                places.remove(place);
-                car.setPlateNumber(ticket.getPlateNumber());
+                licenses.remove(place);
+                car.setPlateNumber(ticket.getLicensePlate());
                 return car;
             }
         }
@@ -51,6 +51,6 @@ public class ParkingLog {
     }
 
     private boolean isCorrectTicket(Ticket ticket, String place) {
-        return ticket.getPlateNumber().equals(place);
+        return ticket.getLicensePlate().equals(place);
     }
 }

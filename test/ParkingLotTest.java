@@ -5,48 +5,48 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ParkingLogTest {
+public class ParkingLotTest {
 
     @Test
     public void have_empty_parking_space_should_return_one_parking_ticket() {
-        ParkingLog parkingLog = initParkingLog();
+        ParkingLot parkingLot = initParkingLog();
         Car car = new Car("陕A-66666");
 
-        Assert.assertEquals(parkingLog.carParking(car).toString(), "------车票------\n" +
+        Assert.assertEquals(parkingLot.park(car).toString(), "------车票------\n" +
                 "编号：1\n" +
                 "车牌号：陕A-66666\n");
     }
 
     @Test
     public void no_have_parking_space_should_return_null() {
-        ParkingLog parkingLog = initPutOneCar();
+        ParkingLot parkingLot = initPutOneCar();
         Car car1 = new Car("陕A-33333");
 
-        Assert.assertNull(parkingLog.carParking(car1));
+        Assert.assertNull(parkingLot.park(car1));
     }
 
     @Test
     public void have_one_ticket_should_return_one_car() {
-        ParkingLog parkingLog = initPutOneCar();
+        ParkingLot parkingLot = initPutOneCar();
         Ticket ticket = new Ticket(1, "陕A-55555");
 
-        Assert.assertEquals(parkingLog.pickUp(ticket).toString(), "车牌号：陕A-55555");
+        Assert.assertEquals(parkingLot.pickUp(ticket).toString(), "车牌号：陕A-55555");
     }
 
     @Test
     public void have_error_ticket_should_return_null() {
-        ParkingLog parkingLog = initPutOneCar();
+        ParkingLot parkingLot = initPutOneCar();
         Ticket ticket = new Ticket(1, "陕A-88888");
 
-        Assert.assertNull(parkingLog.pickUp(ticket));
+        Assert.assertNull(parkingLot.pickUp(ticket));
     }
 
-    private ParkingLog initPutOneCar() {
+    private ParkingLot initPutOneCar() {
         List<String> places = new ArrayList(Arrays.asList("陕A-55555"));
-        return new ParkingLog(1, places);
+        return new ParkingLot(1, places);
     }
 
-    private ParkingLog initParkingLog() {
-        return new ParkingLog(3);
+    private ParkingLot initParkingLog() {
+        return new ParkingLot(3);
     }
 }
