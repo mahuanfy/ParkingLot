@@ -13,7 +13,6 @@ public class ParkingLogBossTest {
         Ticket ticket = new Ticket(1, "陕A-66666");
 
         Assert.assertEquals(parkingLogBoss.carParking(car).toString(), ticket.toString());
-        Assert.assertNull(parkingLogBoss.carParking(car));
     }
     @Test
     public void have_one_ticket_should_return_one_car() {
@@ -21,7 +20,6 @@ public class ParkingLogBossTest {
         Ticket ticket = new Ticket(1, "陕A-55555");
 
         Assert.assertEquals(parkingLogBoss.pickUp(ticket).toString(), new Car("陕A-55555").toString());
-        Assert.assertNull(parkingLogBoss.pickUp(new Ticket(2, "陕A-66666")));
 
     }
 
