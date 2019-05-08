@@ -8,7 +8,7 @@ import java.util.List;
 public class ParkingLotTest {
 
     @Test
-    public void have_empty_parking_space_should_return_one_parking_ticket() {
+    public void have_empty_parking_space_should_return_one_parking_ticket() throws BusinessException {
         ParkingLot parkingLot = initParkingLog();
         Car car = new Car("陕A-66666");
 
@@ -17,28 +17,26 @@ public class ParkingLotTest {
                 "车牌号：陕A-66666\n");
     }
 
-    @Test
-    public void no_have_parking_space_should_return_null() {
+    @Test(expected = BusinessException.class)
+    public void no_have_parking_space_should_return_null() throws BusinessException {
         ParkingLot parkingLot = initPutOneCar();
         Car car1 = new Car("陕A-33333");
-
-        Assert.assertNull(parkingLot.park(car1));
+        parkingLot.park(car1);
     }
 
     @Test
-    public void have_one_ticket_should_return_one_car() {
+    public void have_one_ticket_should_return_one_car() throws BusinessException {
         ParkingLot parkingLot = initPutOneCar();
         Ticket ticket = new Ticket(1, "陕A-55555");
 
         Assert.assertEquals(parkingLot.pickUp(ticket).toString(), "车牌号：陕A-55555");
     }
 
-    @Test
-    public void have_error_ticket_should_return_null() {
+    @Test(expected = BusinessException.class)
+    public void have_error_ticket_should_return_null() throws BusinessException {
         ParkingLot parkingLot = initPutOneCar();
         Ticket ticket = new Ticket(1, "陕A-88888");
-
-        Assert.assertNull(parkingLot.pickUp(ticket));
+        parkingLot.pickUp(ticket);
     }
 
     private ParkingLot initPutOneCar() {

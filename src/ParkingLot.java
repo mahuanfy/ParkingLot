@@ -22,9 +22,9 @@ public class ParkingLot {
         return licenses;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws BusinessException {
         if (!haveVacantParkingSpaces()) {
-            return null;
+            throw new BusinessException("停车失败...");
         }
         licenses.add(car.getPlateNumber());
 
@@ -35,7 +35,7 @@ public class ParkingLot {
         return this.getPlaces().size() < this.parkingSize;
     }
 
-    public Car pickUp(Ticket ticket) {
+    public Car pickUp(Ticket ticket) throws BusinessException {
         Car car = new Car();
         int size = licenses.size();
         for (int i = 0; i < size; i++) {
@@ -47,7 +47,7 @@ public class ParkingLot {
             }
         }
 
-        return null;
+        throw new BusinessException("取车失败..");
     }
 
     private boolean isCorrectTicket(Ticket ticket, String place) {

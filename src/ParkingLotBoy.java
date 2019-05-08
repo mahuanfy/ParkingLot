@@ -1,27 +1,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingLotBoss {
+public class ParkingLotBoy {
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public void setParkingLots(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws BusinessException {
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.getPlaces().size() < parkingLot.getParkingSize()) {
                 return parkingLot.park(car);
             }
         }
-        return null;
+        throw new BusinessException("停车失败...");
     }
 
-    public Car pickUp(Ticket ticket) {
+    public Car pickUp(Ticket ticket) throws BusinessException {
         for (ParkingLot parkingLot : parkingLots) {
             return parkingLot.pickUp(ticket);
         }
-        return null;
+        throw new BusinessException("取车失败..");
     }
 
 }
