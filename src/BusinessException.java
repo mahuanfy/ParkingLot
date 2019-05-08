@@ -1,3 +1,5 @@
+import java.util.function.Supplier;
+
 public class BusinessException extends Exception {
     private String massage;
 

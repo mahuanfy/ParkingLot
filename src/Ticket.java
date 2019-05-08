@@ -1,20 +1,24 @@
 public class Ticket {
-    private int id;
-    private String licensePlate;
+    private String id;
+    private String plateNumber;
 
-    public Ticket(int id, String licensePlate) {
+    public Ticket(String id, String plateNumber) {
         this.id = id;
-        this.licensePlate = licensePlate;
+        this.plateNumber = plateNumber;
     }
 
-    public String getLicensePlate() {
-        return licensePlate;
+    public String getId() {
+        return id;
+    }
+
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
     @Override
     public String toString() {
         return "------车票------\n" +
                 "编号：" + id + "\n" +
-                "车牌号：" + licensePlate + "\n";
+                "车牌号：" + plateNumber + "\n";
     }
 }

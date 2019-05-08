@@ -3,15 +3,20 @@ import java.util.List;
 
 public class ParkingLot {
     private int parkingSize;
-    private List<String> licenses = new ArrayList<>();
+    private List<String> plateNumbers = new ArrayList<>();
+    private ParkingService parkingService = new ParkingService();
+
+    public void setParkingService(ParkingService parkingService) {
+        this.parkingService = parkingService;
+    }
 
     public ParkingLot(int parkingSize) {
         this.parkingSize = parkingSize;
     }
 
-    public ParkingLot(int parkingSize, List<String> licenses) {
+    public ParkingLot(int parkingSize, List<String> plateNumbers) {
         this.parkingSize = parkingSize;
-        this.licenses = licenses;
+        this.plateNumbers = plateNumbers;
     }
 
     public int getParkingSize() {
@@ -19,16 +24,16 @@ public class ParkingLot {
     }
 
     public List<String> getPlaces() {
-        return licenses;
+        return plateNumbers;
     }
 
     public Ticket park(Car car) throws BusinessException {
         if (!haveVacantParkingSpaces()) {
             throw new BusinessException("停车失败...");
         }
-        licenses.add(car.getPlateNumber());
+        plateNumbers.add(car.getPlateNumber());
 
-        return new Ticket(this.getPlaces().size(), car.getPlateNumber());
+        return parkingService.createTicket(car.getPlateNumber());
     }
 
     private boolean haveVacantParkingSpaces() {
@@ -37,12 +42,12 @@ public class ParkingLot {
 
     public Car pickUp(Ticket ticket) throws BusinessException {
         Car car = new Car();
-        int size = licenses.size();
+        int size = plateNumbers.size();
         for (int i = 0; i < size; i++) {
-            String place = licenses.get(i);
+            String place = plateNumbers.get(i);
             if (isCorrectTicket(ticket, place)) {
-                licenses.remove(place);
-                car.setPlateNumber(ticket.getLicensePlate());
+                plateNumbers.remove(place);
+                car.setPlateNumber(ticket.getPlateNumber());
                 return car;
             }
         }
@@ -51,6 +56,6 @@ public class ParkingLot {
     }
 
     private boolean isCorrectTicket(Ticket ticket, String place) {
-        return ticket.getLicensePlate().equals(place);
+        return ticket.getPlateNumber().equals(place);
     }
 }
