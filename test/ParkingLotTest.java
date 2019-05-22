@@ -1,31 +1,27 @@
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ParkingLotTest {
+    @InjectMocks
+    ParkingLot parkingLot = initParkingLog();
     @Mock
     ParkingService parkingService;
 
     @Test
     public void have_empty_parking_space_should_return_one_parking_ticket() throws BusinessException {
-        ParkingLot parkingLot = initParkingLog();
         Car car = new Car("陕A-66666");
         when(parkingService.createTicket(car.getPlateNumber())).thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", car.getPlateNumber()));
-        parkingLot.setParkingService(parkingService);
 
         Assert.assertEquals(parkingLot.park(car).toString(), "------车票------\n" +
                 "编号：3b1cd11db5714998b36ce2c5b19ff245\n" +

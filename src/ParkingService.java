@@ -16,6 +16,13 @@ public class ParkingService {
         return ticket;
     }
     public Ticket findTicketById(String ticketId) throws BusinessException {
-        return ParkingService.tickets.stream().filter(item -> item.getId().equals(ticketId)).findFirst().orElseThrow( () -> new BusinessException("没有找到车票.."));
+        return ParkingService.tickets.stream()
+                .filter(item -> item.getId().equals(ticketId))
+                .findFirst()
+                .orElseThrow( () -> new BusinessException("没有找到车票.."));
+    }
+    public void removeTicket(Ticket ticket){
+        tickets.remove(ticket);
+
     }
 }

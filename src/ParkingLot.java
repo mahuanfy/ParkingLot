@@ -6,10 +6,6 @@ public class ParkingLot {
     private List<String> plateNumbers = new ArrayList<>();
     private ParkingService parkingService = new ParkingService();
 
-    public void setParkingService(ParkingService parkingService) {
-        this.parkingService = parkingService;
-    }
-
     public ParkingLot(int parkingSize) {
         this.parkingSize = parkingSize;
     }
@@ -47,6 +43,7 @@ public class ParkingLot {
             String place = plateNumbers.get(i);
             if (isCorrectTicket(ticket, place)) {
                 plateNumbers.remove(place);
+                parkingService.removeTicket(ticket);
                 car.setPlateNumber(ticket.getPlateNumber());
                 return car;
             }
