@@ -5,8 +5,11 @@ public class ParkingLotBoy {
     private List<ParkingLot> parkingLots = new ArrayList<>();
     private ParkingService parkingService = new ParkingService();
 
-    public void setParkingLots(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+    public ParkingLotBoy() {
+    }
+
+    public void addParkingLot(ParkingLot parkingLot){
+        this.parkingLots.add(parkingLot);
     }
 
     public Ticket park(Car car) throws BusinessException {

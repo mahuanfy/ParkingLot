@@ -15,6 +15,7 @@ import static org.mockito.Mockito.when;
 public class ParkingLotTest {
     @InjectMocks
     ParkingLot parkingLot = initParkingLog();
+
     @Mock
     ParkingService parkingService;
 

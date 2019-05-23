@@ -5,10 +5,6 @@ import java.util.UUID;
 public class ParkingService {
     static List<Ticket> tickets = new ArrayList<>();
 
-    public static void setTickets(List<Ticket> tickets) {
-        ParkingService.tickets = tickets;
-    }
-
     public Ticket createTicket(String plateNumber) {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         Ticket ticket = new Ticket(uuid, plateNumber);
