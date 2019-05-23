@@ -22,7 +22,8 @@ public class ParkingLotTest {
 
     @Before
     public void start(){
-        when(parkingService.createTicket(anyString())).thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", "陕A-66666"));
+        when(parkingService.createTicket(anyString()))
+                .thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", "陕A-66666"));
     }
 
     @Test

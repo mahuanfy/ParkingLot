@@ -29,7 +29,8 @@ public class ParkingLotBoyTest {
         when(parkingLot.getParkingSize()).thenReturn(5);
         List<String> spyList = spy(parkingLot.getPlaces());
         doReturn(3).when(spyList).size();
-        when(parkingService.findTicketById("3b1cd11db5714998b36ce2c5b19ff245")).thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", "车牌号：陕A-55555"));
+        when(parkingService.findTicketById("3b1cd11db5714998b36ce2c5b19ff245"))
+                .thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", "车牌号：陕A-55555"));
     }
 
     @Test
