@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -7,8 +8,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
+import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -19,10 +20,15 @@ public class ParkingLotTest {
     @Mock
     ParkingService parkingService;
 
+    @Before
+    public void start(){
+        when(parkingService.createTicket(anyString())).thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", "陕A-66666"));
+    }
+
     @Test
     public void have_empty_parking_space_should_return_one_parking_ticket() throws BusinessException {
+
         Car car = new Car("陕A-66666");
-        when(parkingService.createTicket(car.getPlateNumber())).thenReturn(new Ticket("3b1cd11db5714998b36ce2c5b19ff245", car.getPlateNumber()));
 
         Assert.assertEquals(parkingLot.park(car).toString(), "------车票------\n" +
                 "编号：3b1cd11db5714998b36ce2c5b19ff245\n" +
@@ -52,8 +58,7 @@ public class ParkingLotTest {
     }
 
     private ParkingLot initPutOneCar() {
-        List<String> places = new ArrayList(Arrays.asList("陕A-55555"));
-        return new ParkingLot(1, places);
+        return new ParkingLot(1, new ArrayList(Arrays.asList("陕A-55555")));
     }
 
     private ParkingLot initParkingLog() {
